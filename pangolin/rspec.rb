@@ -1,16 +1,13 @@
 require 'rspec'
 require_relative 'session'
+require_relative 'matchers'
 require_relative '../pangolin'
 
 module Pangolin
   module ExampleHelpers
   
     def session
-      Pangolin.current_session ||= Pangolin::Session.new
-    end
-
-    def session=(session)
-      Pangolin.current_session = session
+      Pangolin.session
     end
 
     def click(*args)
@@ -21,12 +18,18 @@ module Pangolin
       session.within_alert(&block)
     end
 
+    def screen
+      session
+    end
+
   end
 end
 
 
 RSpec.configure do |c|
   c.include Pangolin::ExampleHelpers
+  c.include Pangolin::RSpecMatchers
+
   c.after(:suite) { Pangolin.teardown_session! }
 end
 

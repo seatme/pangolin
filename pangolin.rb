@@ -4,11 +4,15 @@ require_relative 'pangolin/simulator'
 module Pangolin
 
   class << self
-    attr_accessor :default_wait_time, :current_session
+    attr_accessor :default_wait_time, :session
+
+    def session
+      @session ||= Pangolin::Session.new
+    end
 
     def teardown_session!
-      current_session.teardown! if current_session
-      current_session = nil
+      @session.teardown! if @session
+      @session = nil
     end
   end
 

@@ -25,10 +25,11 @@ def discover_app_path
 end
 
 APPIUM_CAPABILITIES = {
-  'device' => 'iPad Simulator',
+  'device' => 'ipad',
+  'deviceName' => 'iPad',
   'browserName' => 'iOS',
   'platform' => 'Mac',
-  'version' => '6.1',
+  #'version' => '7.0',
   'app' => discover_app_path
 }
 
