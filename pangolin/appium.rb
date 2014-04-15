@@ -23,7 +23,7 @@ module Pangolin
       def start!
         print "Launching Appium (#{APPIUM_PATH})..."
 
-        @appium_pid = spawn("#{APPIUM_PATH} -p #{APPIUM_PORT} 1>>./appium.log 2>&1")
+        @appium_pid = spawn("#{APPIUM_PATH} --log-timestamp --show-sim-log -p #{APPIUM_PORT} 1>./appium.log 2>&1")
         Process.detach(@appium_pid)
 
         print "\nWaiting for Appium server on port #{APPIUM_PORT}..."
