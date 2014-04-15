@@ -10,7 +10,7 @@ module Pangolin
 
     class HasViewMatcher < Matcher
       def matches?(actual)
-        !!actual.find(@locator)
+        !!actual.find(@locator) rescue false
       end
 
       def does_not_match?(actual)
@@ -19,6 +19,14 @@ module Pangolin
 
       def description
         "have view \"#{@locator}\""
+      end
+
+      def failure_message
+        "Expected to have a visible view with name or label \"#{@locator}\""
+      end
+
+      def failure_message_when_negated
+        failure_message.sub(/(to have)/, 'NOT \1')
       end
     end
 
