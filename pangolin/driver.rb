@@ -1,4 +1,9 @@
+require 'selenium-webdriver'
 require_relative 'appium'
+
+include Selenium::WebDriver::DriverExtensions::TakesScreenshot
+include Selenium::WebDriver::DriverExtensions::HasTouchScreen
+include Selenium::WebDriver::DriverExtensions::HasInputDevices
 
 #
 # Attempt to auto-detect the path to a debug build of Dorsia for the simulator
@@ -39,6 +44,7 @@ module Pangolin
 
     def driver
        @driver ||= Selenium::WebDriver.for(:remote, :desired_capabilities => APPIUM_CAPABILITIES, :url => APPIUM_URL) 
+       #@driver.manage.timeouts.implicit_wait = 5 # seconds
     end
 
     def teardown_driver!
