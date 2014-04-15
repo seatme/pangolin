@@ -24,6 +24,15 @@ module Pangolin
       end
     end
 
+    def fill_in(locator, opts={})
+      value = opts[:with]
+      raise ArgumentError.new("Option :with is required") unless value && value.length
+
+      find_input(locator).tap do |e|
+        e.send_keys(value)
+      end
+    end
+
     def dismiss_popover
       mobile_tap(0.99, 0.99)
 

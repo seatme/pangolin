@@ -27,6 +27,20 @@ module Pangolin
       end
     end
 
+    def find_input(locator)
+      raise AgumentError, "Argument locator is required" unless locator
+
+      element = find(locator)
+      return element if INPUT_FIELD_TAGS.include?(element.tag_name)
+
+      INPUT_FIELD_TAGS.each do |input_tag_name|
+        fields = element.find_elements(:tag_name, input_tag_name)
+        return fields[0] if fields and fields.count > 0
+      end
+
+      raise Pangolin::ElementNotFound, "No input-capable element found (types #{INPUT_FIELD_TAGS}) for locator \"#{locator}\""
+    end
+
 
     private 
 
