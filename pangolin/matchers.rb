@@ -14,7 +14,7 @@ module Pangolin
       end
 
       def does_not_match?(actual)
-        actual.all(locator).size.zero?
+        !!actual.find(@locator, :count => 0) rescue false
       end
 
       def description
