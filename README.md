@@ -1,8 +1,9 @@
 # Pangolin
 
-An automated testing framework for writing Appium integration tests for mobile applications.
+A Ruby framework that makes it easier to write Appium automation tests.  Inspired by Capybara (https://github.com/jnicklas/capybara).
 
-Pangolin is similar in both purpose and syntax to Capybara.  It provides APIs on top of the selenium-driver gem and RSpec integration to make it easier to write Appium tests.
+Currently, Pangolin only supports iOS apps in the simulator.
+
 
 ## Syntax
 
